@@ -2,12 +2,12 @@
 
 const reverseStringRecursion = (string, array) => {
     const firstLetter = string.charAt(0);
-    const restOfWord = string.substr(1);
+    const restOfString = string.substr(1);
     const reversedString = array || [];
   
   if (string !== "") {
     reversedString.unshift(firstLetter);
-    reverseStringRecursion(restOfWord, reversedString);
+    reverseStringRecursion(restOfString, reversedString);
   } 
     return reversedString.join("");
 };
