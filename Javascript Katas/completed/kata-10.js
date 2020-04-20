@@ -6,7 +6,6 @@ const printFirstNonRepeatedCharacter = (string) => {
     const stringArray = stringToArray(string);
     const nonRepeatedArray = stringArray.filter((element => stringArray.indexOf(element) === stringArray.lastIndexOf(element)));
     return nonRepeatedArray[0];
-
 }
 
 // const printFirstNonRepeatedCharacter = (string) => {
