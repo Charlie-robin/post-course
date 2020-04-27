@@ -1,4 +1,4 @@
-import { swapWithoutThirdVariable } from "./q14-solution";
+import { swapWithoutThirdVariable } from "../completed/kata-14";
 
 describe("How do you swap two numbers without using a third variable?", () => {
 

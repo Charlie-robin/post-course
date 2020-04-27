@@ -1,6 +1,6 @@
 // 12: How can a given string be reversed using recursion?
 
-import { reverseWithRecursion } from "./q12-solution";
+import { reverseWithRecursion } from "../completed/kata-12";
 
 describe("How can a given string be reversed using recursion?", () => {
     it("Basic characters", () => {

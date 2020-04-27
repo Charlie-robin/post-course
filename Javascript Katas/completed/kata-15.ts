@@ -1,16 +1,16 @@
 // How do you find all permutations of a string?
 
-const allPermutations = (text) => {
+export const allPermutations = (string) => {
     const results = [];
 
-    if (text.length === 1) {
-      results.push(text);
+    if (string.length === 1) {
+      results.push(string);
       return results;
     }
 
-    text.split("")
+    string.split("")
       .forEach((firstChar, index) => {
-        const charsLeft = text.substring(0, index) + text.substring(index + 1);
+        const charsLeft = string.substring(0, index) + string.substring(index + 1);
         
         allPermutations(charsLeft)
           .forEach((permutation) => {

@@ -1,6 +1,6 @@
 // 15: How do you find all permutations of a string?
 
-import { allPermutations } from "./q15-solution";
+import { allPermutations } from "../completed/kata-15"
 
 describe("How do you find all permutations of a string?", () => {
 
