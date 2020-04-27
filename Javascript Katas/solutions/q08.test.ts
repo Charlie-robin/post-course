@@ -1,4 +1,4 @@
-import { findDuplicates } from "./q08-solution";
+import { findDuplicates } from "../completed/kata-08";
 // How do you print duplicate characters from a string?
 
 describe("How do you print duplicate characters from a string?", () => {

@@ -1,4 +1,4 @@
-import { findMultipleDuplicates } from "./q03-solution";
+import { findMultipleDuplicates } from "../completed/kata-03";
 
 describe("How do you find duplicate numbers in an array if it contains multiple duplicates?", () => {
 

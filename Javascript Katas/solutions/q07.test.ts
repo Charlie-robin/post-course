@@ -1,6 +1,6 @@
 // 07: How do you reverse an array in place in Javascript?
 
-import { reverseWordsInSentence } from "./q07-solution";
+import { reverseWordsInSentence } from "../completed/kata-07";
 
 describe("How do you reverse the words in a sentence?", () => {
     it("Reverses basic sentence", () => {

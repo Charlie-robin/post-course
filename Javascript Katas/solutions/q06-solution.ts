@@ -1,7 +1,8 @@
 // 06: How do you find all pairs of an integer array whose sum is equal to a given number?
 
 export function findPairsWhichSum(numberArray: number[], goal: number): number[][] {
-  return [... new Set(numberArray)]
+  
+ const result = [... new Set(numberArray)]
         .filter((currentNumber) => {
           if (goal / 2 > currentNumber) {
             return false;
@@ -12,4 +13,9 @@ export function findPairsWhichSum(numberArray: number[], goal: number): number[]
           return ((goal - currentNumber) in numberArray);
         })
         .map((item) => [item, goal - item]);
+
+        console.log(result);
+
+        return result;
+
 }

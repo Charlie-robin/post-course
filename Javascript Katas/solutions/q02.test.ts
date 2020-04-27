@@ -1,4 +1,4 @@
-import { findDuplicate } from "./q02-solution";
+import { findDuplicate } from "../completed/kata-02";
 
 describe("How do you find the duplicate number on a given integer array?", () => {
 

@@ -1,4 +1,4 @@
-import { findLargestAndSmallest } from "./q05-solution";
+import { findLargestAndSmallest } from "../completed/kata-05";
 
 describe("How do you find the largest and smallest number in an unsorted integer array?", () => {
     it("Should return top and tail in a sorted array", () => {

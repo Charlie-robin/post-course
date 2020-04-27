@@ -1,6 +1,6 @@
 // 10: How do you print the first non-repeated character from a string?
 
-import { printFirstNonRepeat } from "./q10-solution";
+import { printFirstNonRepeat } from "../completed/kata-10"
 
 describe("How do you check if two strings are anagrams of each other?", () => {
     it("First Character doesn't repeat", () => {
