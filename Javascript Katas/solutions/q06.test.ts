@@ -1,4 +1,4 @@
-import { findPairsWhichSum } from "../completed/kata-06";
+import { findPairsWhichSum } from "../week-three/kata-06";
 
 describe("How do you find all pairs of an integer array whose sum is equal to a given number?", () => {
     it("Should find first pair of numbers", () => {

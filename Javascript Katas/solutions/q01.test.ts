@@ -1,4 +1,4 @@
-import { missingNumberInSequence } from "../completed/kata-01";
+import { missingNumberInSequence } from "../week-three/kata-01";
 
 describe("How do you find the missing numbers in a given integer array?", () => {
 
