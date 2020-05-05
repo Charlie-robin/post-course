@@ -6,7 +6,7 @@ const findPairsWhichSum = (array, match) => {
 
   for (const number in arrCopy) {
     const matchNum = match - number;
-    const matchPair = arrCopy.map((element) => element === matchNum);
+    const matchPair = arrCopy.map((element,index) => element === matchNum );
     result.push(matchPair);
   }
   return result;
