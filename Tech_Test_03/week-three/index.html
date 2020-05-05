@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Wasp Nest</title>
+  </head>
+  <body>
+    <main
+      id="gameboard"
+      style="
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        padding: 40px;
+      "
+    ></main>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <button onclick="waspNest.hitButton()">Fire</button>
+      <button onclick="newGame();">New Game</button>
+    </div>
+    <script>
+      class ProtoWasp {
+        constructor(id, type, hitPoints, damage) {
+          this.id = id;
+          this.type = type;
+          this.hitPoints = hitPoints;
+          this.damage = damage;
+        }
+        
+        takeDamage = () => {
+          this.hitPoints -= this.damage;
+        };
+
+        renderWasp = () =>
+          this.hitPoints > 0
+            ? `<p style="text-align:center;" id='${this.id}' >${this.type} : ${this.hitPoints}</p>`
+            : null;
+      }
+
+      class WaspNest {
+        constructor(nest, gameBoard) {
+          this.nest = nest;
+          this.gameBoard = gameBoard;
+        }
+
+        waspCreator(type, numNeeded) {
+          const waspType = type === "drone" ? ["d", "drone", 60, 12] : ["w", "worker", 68, 10];
+          for (let index = 0; index < numNeeded; index++) {
+            waspType[0] = index + 1 + type.charAt(0);
+            this.nest.push(new ProtoWasp(...waspType));
+          }
+        }
+
+        generateNest() {
+          this.waspCreator("drone", 8);
+          this.waspCreator("worker", 5);
+          this.nest.push(new ProtoWasp("q1", "queen", 80, 7));
+        }
+
+        queenCheck() {
+          const queen = this.nest.filter((element) => element.type === "queen");
+          return queen.length < 1 || queen[0].hitPoints <= 0 ? false : true;
+        }
+
+        updateNest() {
+          if (this.queenCheck()) {
+            const filteredNest = this.nest.filter((element) => element.hitPoints > 0);
+            filteredNest;
+            this.nest = filteredNest;
+          } else {
+            this.nest = [];
+          }
+        }
+
+        generateHtml() {
+          document.getElementById("gameboard").innerHTML = "";
+          this.updateNest();
+          this.gameBoard = this.nest.map((element) => element.renderWasp());
+          document.getElementById("gameboard").innerHTML = this.gameBoard.join("");
+        }
+
+        waspTakeDamage() {
+          const randomNum = Math.floor(Math.random() * this.nest.length);
+          this.nest[randomNum].takeDamage();
+        }
+
+        hitButton() {
+          this.waspTakeDamage();
+          this.generateHtml();
+        }
+      }
+
+      let waspNest;
+
+      const newGame = () => {
+        waspNest = new WaspNest([], []);
+        waspNest.generateNest();
+        waspNest.generateHtml();
+      };
+
+      newGame();
+    </script>
+  </body>
+</html>
