@@ -1,0 +1,21 @@
+.nav {
+    background-color: #efefef;
+    height: 10vh;
+    display: flex;
+    text-align: center;
+    padding: 0 20px;
+    border-bottom: solid 1px #018;
+
+    
+    ul {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .link {
+            margin: 10px;
+            list-style: none;
+            text-decoration: none;
+            color: #018;
+        }
+    }
+}

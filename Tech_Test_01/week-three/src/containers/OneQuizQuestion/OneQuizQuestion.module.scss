@@ -1,0 +1,14 @@
+.quizContainer {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+
+    form {
+        height: 50%;
+        width: 50%;
+        border: 2px solid #efefef;
+        padding: 20px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,14 @@
+.weatherContainer {
+    display: grid;
+    grid-template-columns: 1fr  1fr 1fr;
+    height: 90vh;
+    background-color: paleturquoise;
+    grid-gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    align-items: center;
+    > div {
+        height: 50%;
+        border: 2px solid red;
+    }
+}
