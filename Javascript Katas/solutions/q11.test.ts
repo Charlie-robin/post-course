@@ -1,6 +1,6 @@
 // 11: How do you check if a given string is a palindrome?
 
-import { palindrome } from "../week-two/kata-11";
+import { palindrome } from "../week-four/kata-11";
 
 describe("How do you check if a given string is a palindrome?", () => {
     it("Basic characters", () => {

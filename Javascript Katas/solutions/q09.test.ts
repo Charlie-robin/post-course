@@ -1,6 +1,6 @@
 // 09: How do you check if two strings are anagrams of each other?
 
-import { compareAnagrams } from "../week-two/kata-09";
+import { compareAnagrams } from "../week-four/kata-09";
 
 describe("How do you check if two strings are anagrams of each other?", () => {
     it("Dog", () => {
