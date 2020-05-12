@@ -23,7 +23,6 @@ const FootBallManager = (props) => {
     const curTeamState = [...playerSelection, ...player];
     updatePlayers(curTeamState);
     updateTeam(playerRemoved);
-
   }
 
   const filterPlayers = (position) =>
