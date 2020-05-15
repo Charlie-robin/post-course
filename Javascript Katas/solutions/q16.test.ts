@@ -1,6 +1,6 @@
 // 16: How do you check if a string contains only digits?
 
-import { onlyDigits } from "../week-two/kata-16";
+import { onlyDigits } from "../week-five/kata-16";
 
 test("How do you check if a string contains only digits?", () => {
     expect(onlyDigits("abc")).toBeFalsy();
