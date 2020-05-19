@@ -7,8 +7,11 @@ class Cube {
   xAxis1 = [];
   xAxis2 = [];
   yAxis0 = [];
-  xAxis1 = [];
-  xAxis2 = [];
+  yAxis1 = [];
+  yAxis2 = [];
+  zAxis0 = [];
+  zAxis1 = [];
+  zAxis2 = [];
 
   colorCreator = (numNeeded) => {
     for (let index = 0; index < numNeeded; index++) {
@@ -57,33 +60,58 @@ class Cube {
         this.yAxis0.push(
           ...element.filter((element, index) => sliceOne.includes(index))
         );
-        this.xAxis1.push(
+        this.yAxis1.push(
           ...element.filter((element, index) => sliceTwo.includes(index))
         );
-        this.xAxis2.push(
+        this.yAxis2.push(
           ...element.filter((element, index) => sliceThree.includes(index))
         );
       }
     });
+  };
 
-    createZAxisArrays = () => {
-      this.faces.forEach((element, index) => {
-        const indexNeeded = [0, 2, 4, 5];
-        const sliceOne = [0, 3, 6];
-        const sliceTwo = [1, 4, 7];
-        const sliceThree = [2, 5, 8];
-        if (indexNeeded.includes(index)) {
-          this.yAxis0.push(
-            ...element.filter((element, index) => sliceOne.includes(index))
-          );
-          this.xAxis1.push(
-            ...element.filter((element, index) => sliceTwo.includes(index))
-          );
-          this.xAxis2.push(
-            ...element.filter((element, index) => sliceThree.includes(index))
-          );
+  createZAxisArrays = () => {
+    this.faces.forEach((element, faceIndex) => {
+      const indexNeeded = [0, 4, 2, 5];
+      let sliceOne, sliceTwo, sliceThree;
+      if (indexNeeded.includes(faceIndex)) {
+        switch (faceIndex) {
+          case 0: {
+            sliceOne = [0, 3, 6];
+            sliceTwo = [1, 4, 7];
+            sliceThree = [2, 5, 8];
+            break;
+          }
+          case 2: {
+            sliceOne = [2, 5, 8];
+            sliceTwo = [1, 4, 7];
+            sliceThree = [2, 5, 8];
+            break;
+          }
+          case 4: {
+            sliceOne = [1, 2, 3];
+            sliceTwo = [1, 4, 7];
+            sliceThree = [2, 5, 8];
+            break;
+          }
+          case 5: {
+            sliceOne = [7, 8, 9];
+            sliceTwo = [1, 4, 7];
+            sliceThree = [2, 5, 8];
+            break;
+          }
         }
-      });
+        this.zAxis0.push(
+          ...element.filter((element, index) => sliceOne.includes(index))
+        );
+        this.zAxis1.push(
+          ...element.filter((element, index) => sliceTwo.includes(index))
+        );
+        this.zAxis2.push(
+          ...element.filter((element, index) => sliceThree.includes(index))
+        );
+      }
+    });
   };
 
   init = () => {
@@ -98,5 +126,4 @@ class Cube {
 const test = new Cube();
 test.init();
 
-console.log(test.yAxis0, "topslice");
 console.log(test);
