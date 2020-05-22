@@ -130,7 +130,7 @@ class Cube {
         ...this.xAxis0.slice(startNum, endNum),
         ...this.xAxis1.slice(startNum, endNum),
         ...this.xAxis2.slice(startNum, endNum),
-        initFaces[]
+    
       ]);
 
     }
@@ -152,5 +152,5 @@ test.init();
 
 // console.log(test);
 
-console.log(test.faces);
+console.log(test);
 console.log(test.xAxis0);
