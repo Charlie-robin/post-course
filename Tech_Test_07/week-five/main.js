@@ -1,8 +1,8 @@
 class Cube {
   constructor() {}
   colors = [];
-  tiles = [];
   faces = [];
+  initFaces = [];
   xAxis0 = [];
   xAxis1 = [];
   xAxis2 = [];
@@ -30,16 +30,16 @@ class Cube {
     }
   };
 
-  createFaces = (numberNeeded) => {
+  createInitFaces = (numberNeeded) => {
     for (let index = 0; index < numberNeeded; index++) {
       const startNum = index * numberNeeded;
       const endNum = startNum + 9;
-      this.faces.push(this.colors.slice(startNum, endNum));
+      this.initFaces.push(this.colors.slice(startNum, endNum));
     }
   };
 
   createXAxisArrays = () => {
-    this.faces.forEach((element, index) => {
+    this.initFaces.forEach((element, index) => {
       if (index <= 3) {
         this.xAxis0.push(...element.filter((element, index) => index <= 2));
         this.xAxis1.push(
@@ -51,7 +51,7 @@ class Cube {
   };
 
   createYAxisArrays = () => {
-    this.faces.forEach((element, index) => {
+    this.initFaces.forEach((element, index) => {
       const indexNeeded = [1, 3, 4, 5];
       const sliceOne = [0, 3, 6];
       const sliceTwo = [1, 4, 7];
@@ -71,7 +71,7 @@ class Cube {
   };
 
   createZAxisArrays = () => {
-    this.faces.forEach((element, faceIndex) => {
+    this.initFaces.forEach((element, faceIndex) => {
       const indexNeeded = [0, 4, 2, 5];
       let sliceOne, sliceTwo, sliceThree;
       if (indexNeeded.includes(faceIndex)) {
@@ -85,19 +85,19 @@ class Cube {
           case 2: {
             sliceOne = [2, 5, 8];
             sliceTwo = [1, 4, 7];
-            sliceThree = [2, 5, 8];
+            sliceThree = [0, 3, 6];
             break;
           }
           case 4: {
-            sliceOne = [1, 2, 3];
-            sliceTwo = [1, 4, 7];
-            sliceThree = [2, 5, 8];
+            sliceOne = [0, 1, 2];
+            sliceTwo = [3, 4, 5];
+            sliceThree = [6, 7, 8];
             break;
           }
           case 5: {
-            sliceOne = [7, 8, 9];
-            sliceTwo = [1, 4, 7];
-            sliceThree = [2, 5, 8];
+            sliceOne = [6, 7, 8];
+            sliceTwo = [3, 4, 5];
+            sliceThree = [0, 1, 2];
             break;
           }
         }
@@ -114,16 +114,43 @@ class Cube {
     });
   };
 
+  shiftArray = (arrayToShift) => {
+    const arrCopy = [...this[arrayToShift]];
+    const firstThree = arrCopy.filter((element, index) => index < 3);
+    const restArray = arrCopy.filter((element, index) => index > 2);
+    this[arrayToShift] = [...restArray, ...firstThree];
+  };
+
+  constructFaces = (numNeeded) => {
+    //horizontalchange
+    for (let index = 0; index < numNeeded; index++) {
+      const startNum = index * 3;
+      const endNum = startNum + 3;
+      this.faces.push([
+        ...this.xAxis0.slice(startNum, endNum),
+        ...this.xAxis1.slice(startNum, endNum),
+        ...this.xAxis2.slice(startNum, endNum),
+        initFaces[]
+      ]);
+
+    }
+  };
+
   init = () => {
     this.colorCreator(9);
     this.shuffleColors();
-    this.createFaces(6);
+    this.createInitFaces(6);
     this.createYAxisArrays();
     this.createXAxisArrays();
+    this.createZAxisArrays();
+    this.constructFaces(4);
   };
 }
 
 const test = new Cube();
 test.init();
 
-console.log(test);
+// console.log(test);
+
+console.log(test.faces);
+console.log(test.xAxis0);
