@@ -13,7 +13,7 @@
 
 // WECRLTEERDSOEEFEAOCAIVDEN
 
-const encodeRailFenceCipher = (string, numberRails) => {
+const createRailObj = (string, numberRails) => {
   const stringArray = string.split("");
   let railObj = {};
   let counter = 0;
@@ -30,21 +30,37 @@ const encodeRailFenceCipher = (string, numberRails) => {
     }
     reverse ? counter-- : counter++;
   }
-  return Object.values(railObj).join("");
+  return railObj;
 };
+
+const encodeRailFenceCipher = (string, numberRails) =>
+  Object.values(createRailObj(string, numberRails)).join("");
+
 // console.log(encodeRailFenceCipher("hellohello", 3));
 // console.log(encodeRailFenceCipher("WEAREDISCOVEREDFLEEATONCE", 3) === 'WECRLTEERDSOEEFEAOCAIVDEN');
 // // WECRLTEERDSOEEFEAOCAIVDEN
 
 function decodeRailFenceCipher(string, numberRails) {
   const stringArray = string.split("");
-  const value = numberRails * 2 - 3;
-  const topValues = Math.ceil(stringArray.length / (value + 1));
-  const secondLayer = Math.floor(stringArray.length / (value - 2));
-  console.log(secondLayer);
+  const railLength = createRailObj(string, numberRails);
+  const railObj = {};
+  let startNum = 0;
+  let endNum;
+  for (let key in railLength) {
+    endNum = startNum + railLength[key].length;
+    railObj[key] = [
+      ...stringArray.filter(
+        (element, index) => index >= startNum && index < endNum
+      ),
+    ];
+    startNum = endNum;
+  }
+  
+  return railObj;
 }
 
 console.log(decodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3));
+console.log(encodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3))
 
 //WEAREDISCOVEREDFLEEATONCE = 25 * numberofrails
 
@@ -53,5 +69,5 @@ console.log(decodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3));
 // AIVDEN
 
 // W       E       C       R       L       T       E
-//   E   R   D   S   O   E   E   F   E   A   O   C   a
+//   E   R   D   S   O   E   E   F   E   A   O   C   
 //     A       I       V       D       E       N
