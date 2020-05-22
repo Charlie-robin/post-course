@@ -36,31 +36,62 @@ const createRailObj = (string, numberRails) => {
 const encodeRailFenceCipher = (string, numberRails) =>
   Object.values(createRailObj(string, numberRails)).join("");
 
-// console.log(encodeRailFenceCipher("hellohello", 3));
-// console.log(encodeRailFenceCipher("WEAREDISCOVEREDFLEEATONCE", 3) === 'WECRLTEERDSOEEFEAOCAIVDEN');
-// // WECRLTEERDSOEEFEAOCAIVDEN
 
-function decodeRailFenceCipher(string, numberRails) {
+const decodeRailFenceCipher = (string, numberRails) => {
   const stringArray = string.split("");
   const railLength = createRailObj(string, numberRails);
+  const railFilter = {};
   const railObj = {};
   let startNum = 0;
   let endNum;
+
   for (let key in railLength) {
     endNum = startNum + railLength[key].length;
-    railObj[key] = [
+    railFilter[key] = [
       ...stringArray.filter(
         (element, index) => index >= startNum && index < endNum
       ),
     ];
     startNum = endNum;
   }
-  
-  return railObj;
-}
+
+  for (let key in railFilter) {
+    const endRail = (numberRails - 1).toString();
+    let keyNum = parseInt(key);
+    switch (key) {
+      case "0": {
+        console.log(railFilter[key]);
+        railFilter[key].forEach((element, index) => {
+          index === 0
+            ? (railObj[index] = element)
+            : (railObj[index * (numberRails + 1)] = element);
+        });
+        break;
+      }
+      case endRail: {
+        railFilter[key].forEach((element, index) => {
+          index == 0
+            ? (railObj[keyNum] = element)
+            : (railObj[index * (numberRails + 1) + keyNum] = element);
+        });
+        break;
+      }
+      default: {
+        railFilter[key].forEach((element, index) => {
+          index == 0
+            ? (railObj[keyNum] = element)
+            : (railObj[index * 2 + keyNum] = element);
+        });
+        break;
+      }
+    }
+  }
+
+  return Object.values(railObj).join("");
+};
 
 console.log(decodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3));
-console.log(encodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3))
+// console.log(encodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3));
 
 //WEAREDISCOVEREDFLEEATONCE = 25 * numberofrails
 
@@ -69,5 +100,5 @@ console.log(encodeRailFenceCipher("WECRLTEERDSOEEFEAOCAIVDEN", 3))
 // AIVDEN
 
 // W       E       C       R       L       T       E
-//   E   R   D   S   O   E   E   F   E   A   O   C   
+//   E   R   D   S   O   E   E   F   E   A   O   C
 //     A       I       V       D       E       N
