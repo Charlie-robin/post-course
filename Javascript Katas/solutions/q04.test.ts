@@ -1,4 +1,4 @@
-import { removeDuplicates } from "../week-three/kata-04";
+import { removeDuplicates } from "../week-seven/kata-04";
 
 describe("How are duplicates removed from a given array in ES6?", () => {
     it("Should remove duplicates in a sorted array", () => {
