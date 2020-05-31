@@ -1,6 +1,6 @@
 // 15: How do you find all permutations of a string?
 
-import { allPermutations } from "../week-two/kata-15"
+import { allPermutations } from "../week-seven/kata-15"
 
 describe("How do you find all permutations of a string?", () => {
 
