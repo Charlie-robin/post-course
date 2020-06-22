@@ -1,4 +1,4 @@
-import { findDuplicate } from "../week-seven/kata-02";
+import { findDuplicate } from "../week-eight/kata-02";
 
 describe("How do you find the duplicate number on a given integer array?", () => {
 
